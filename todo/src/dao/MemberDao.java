@@ -36,4 +36,13 @@ public class MemberDao {
 		stmt.close();
 		return loginMember;
 	}
+	
+	public void addMember(Connection conn, Member member) throws SQLException {
+		String sql = MemberQuery.ADD_MEMBER;
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		stmt.setString(2, member.getMemberPw());
+		stmt.executeQuery();
+		stmt.close();
+	}
 }

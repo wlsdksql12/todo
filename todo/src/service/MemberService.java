@@ -63,4 +63,22 @@ public class MemberService {
 		}
 		return loginMember;
 	}
+	
+	public void addMember(Member member) {
+		System.out.println(member + "<-- MemberService.member");
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection("jdbc:mariadb://52.79.93.109:3306/todo", "root", "java1004");
+			memberDao = new MemberDao();
+			memberDao.addMember(conn, member);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
