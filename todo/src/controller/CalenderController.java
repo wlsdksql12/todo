@@ -12,14 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import service.CalenderService;
+import service.NoticeService;
 import service.TodoService;
 import vo.Member;
+import vo.Notice;
 import vo.Todo;
 
 
 @WebServlet("/member/Calender")
 public class CalenderController extends HttpServlet {
 	private CalenderService calenderService;
+	private NoticeService noticeService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -36,9 +39,14 @@ public class CalenderController extends HttpServlet {
 		String memberId = ((Member)request.getSession().getAttribute("loginMember")).getMemberId();
 		Map<String, Object> map = calenderService.getTargetCalender(memberId ,currentYear, currentMonth, option);
 		
+		noticeService = new NoticeService();
+		List<Notice> noticeList = noticeService.getNoticeList5();
+		
+		System.out.println("00000000"+noticeList+"0000000000");
 		System.out.println("00"+map.get("targetMonth")+"00map.get(\"targetMonth\")");
 		
 		// 모델
+		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("targetYear", map.get("targetYear"));
 		request.setAttribute("targetMonth", map.get("targetMonth"));
 		request.setAttribute("endDay", map.get("endDay"));

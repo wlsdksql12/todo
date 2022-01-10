@@ -19,7 +19,6 @@ import vo.Notice;
 @WebServlet("/Login")
 public class LoginController extends HttpServlet {
 	private MemberService memberService;
-	private NoticeService noticeService;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,9 +30,6 @@ public class LoginController extends HttpServlet {
 			return;
 		}
 		
-		noticeService = new NoticeService();
-		List<Notice> noticeList = noticeService.getNoticeList5();
-		request.setAttribute("noticeList", noticeList);
 		request.getRequestDispatcher("/WEB-INF/view/loginForm.jsp").forward(request, response);
 	}
 	

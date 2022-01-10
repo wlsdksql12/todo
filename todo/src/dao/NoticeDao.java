@@ -20,11 +20,35 @@ public class NoticeDao {
          Notice notice = new Notice();
          notice.setNoticeNo(rs.getInt("noticeNo"));
          notice.setNoticeTitle(rs.getString("noticeTitle"));
+         notice.setNoticeContent(rs.getString("noticeContent"));
          notice.setCreateDate(rs.getString("createDate"));
+         notice.setUpdateDate(rs.getString("updateDate"));
          list.add(notice);
       }
       rs.close();
       stmt.close();
       return list;
+   }
+   
+   public Notice selectNoticeOne(Connection conn, int noticeNo)  throws SQLException{
+	   Notice notice = null;
+	   String sql = NoticeQuery.SELECT_NOTICE_ONE;
+	   PreparedStatement stmt = conn.prepareStatement(sql);
+	   System.out.println(stmt + "NoticeQuery.SELECT_NOTICE_ONE");
+		stmt.setInt(1, noticeNo);
+	   ResultSet rs = stmt.executeQuery();
+	   if(rs.next()) {
+		   notice = new Notice();
+		   notice.setNoticeNo(rs.getInt("noticeNo"));
+		   notice.setNoticeTitle(rs.getString("noticeTitle"));
+		   notice.setNoticeContent(rs.getString("noticeContent"));
+		   notice.setNoticeTitle(rs.getString("noticeTitle"));
+		   notice.setCreateDate(rs.getString("createDate"));
+		   notice.setUpdateDate(rs.getString("updateDate"));
+	   }
+	   System.out.println("☆★☆★☆★☆★"+notice+"☆★☆★☆★☆★");
+	   rs.close();
+	   stmt.close();
+	   return notice;   
    }
 }

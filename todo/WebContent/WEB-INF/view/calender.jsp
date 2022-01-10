@@ -25,6 +25,21 @@
 		</li>
 	</ul>
 	
+	<div class="jumbotron">
+	<h1>[공지사항]</h1>
+	<c:forEach items="${noticeList}" var="notice">
+		<table class="table table-borderless table-hover">
+			<tr class="border-bottom font-weight-bold">
+				<td class="text-right">제목</td>
+				<td class="text-right">생성 날짜</td>
+			</tr>
+			<tr class="border-bottom font-weight-bold">
+				<td class="text-right"><a href="${pageContext.request.contextPath}/member/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+				<td class="text-right">${notice.createDate}</td>
+			</tr>
+		</table>
+	</c:forEach>
+	</div>
 	<!-- 달력 + todo -->
 	<h1>
 		<ul class="pagination">
