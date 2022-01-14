@@ -15,11 +15,11 @@
 		<table class="table table-borderless table-hover">
 			<tr class="border-bottom font-weight-bold">
 				<td class="text-right"> 아이디 : </td>
-				<td class="text-center"><input id="memberId" type="text" name="memberId"></td>
+				<td class="text-center"><input id="memberId" type="text" name="memberId" value="admin"></td>
 			</tr>
 			<tr class="border-bottom font-weight-bold">
 				<td class="text-right"> 비번 : </td>
-				<td class="text-center"><input id="memberPw" type="password" name="memberPw"></td>
+				<td class="text-center"><input id="memberPw" type="password" name="memberPw" value="1234"></td>
 			</tr>
 		</table>
 		<div class="text-center"><button id="loginbtn" type="button" class=" btn btn-outline-info">로그인</button></div>
